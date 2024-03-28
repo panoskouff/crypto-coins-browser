@@ -7,8 +7,6 @@ type CoinInfo = {
   low_24h: number
   price_change_percentage_24h: number
   last_updated: string
-  /* contains more properties and data that are not listed in this type */
-  [property: string]: any
 }
 
 type GetCoinsListResponseData = CoinInfo[]

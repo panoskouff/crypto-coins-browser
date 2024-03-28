@@ -1,32 +1,34 @@
 'use server'
 
 import { coinGeckoApiBaseUrl } from '#/config'
-import { getCoinsListAdapter } from './adapter'
-import { getCoinsListSchema } from './schema'
+import { getCoinAdapter } from './adapter'
+import { sanitizeArgs } from './helpers'
+import { getCoinSchema } from './schema'
 
-type GetCoinsListArgs = {
-  page: number
-  perPage: number
+type GetCoinArgs = {
+  coinId: string
 }
 
-export const getCoinsList = async ({ page, perPage }: GetCoinsListArgs) => {
+export const getCoin = async (args: GetCoinArgs) => {
   try {
-    if (typeof page !== 'number' || typeof perPage !== 'number') {
+    if (typeof args.coinId !== 'string') {
       throw new Error('Invalid arguments')
     }
 
-    const validationResult = getCoinsListSchema.safeParse({ page, perPage })
+    const { coinId } = sanitizeArgs(args)
+
+    const validationResult = getCoinSchema.safeParse({ coinId })
 
     if (!validationResult.success) {
       throw new Error(validationResult.error.message)
     }
 
-    const url = `${coinGeckoApiBaseUrl}/coins/markets?vs_currency=usd&per_page=${perPage}&page=${page}&price_change_percentage=24h`
+    const url = `${coinGeckoApiBaseUrl}/coins/${coinId}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=false`
 
     const response = await fetch(url)
     const data = await response.json()
 
-    const adaptedData = getCoinsListAdapter(data)
+    const adaptedData = getCoinAdapter(data)
 
     return {
       ok: true,
