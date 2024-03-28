@@ -3,10 +3,11 @@ import { useCallback, useEffect, useState } from 'react'
 import { getCoinsList } from '#/server-actions'
 import { useRouter } from 'next/navigation'
 import { Button, Column, Text, Row, Center } from '#/atoms'
+import { CoinsList } from './CoinsList'
 
 type CoinsListResponse = Awaited<ReturnType<typeof getCoinsList>>
 
-type CoinsListProps = {
+type CoinsListContainerProps = {
   coinsListResponse: CoinsListResponse
   currentPage: number
   currentPerPage: number
@@ -19,7 +20,7 @@ const getUrlForPage = (page: number, perPage: number) => {
   return `/?${searchParams.toString()}`
 }
 
-export const CoinsList: React.FC<CoinsListProps> = ({
+export const CoinsListContainer: React.FC<CoinsListContainerProps> = ({
   coinsListResponse,
   currentPage,
   currentPerPage,
@@ -58,18 +59,14 @@ export const CoinsList: React.FC<CoinsListProps> = ({
   }
 
   return (
-    <Column>
-      <div>{JSON.stringify(coinsListResponse.data, null, 2)}</div>
-      <Row justifyContent='space-between'>
-        <Button
-          onClick={() => moveTo(previousPage)}
-          disabled={currentPage === 1}
-          text='<'
-          maxW='60px'
-        />
-        <Text>{currentPage}</Text>
-        <Button onClick={() => moveTo(nextPage)} text='>' maxW='60px' />
-      </Row>
-    </Column>
+    <CoinsList
+      coins={coinsListResponse.data}
+      errorMessage={coinsListResponse.errorMessage}
+      currentPage={currentPage}
+      nextPage={nextPage}
+      previousPage={previousPage}
+      moveTo={moveTo}
+      isPreviousPageDisabled={currentPage === 1}
+    />
   )
 }

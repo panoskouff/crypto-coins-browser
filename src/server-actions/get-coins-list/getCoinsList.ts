@@ -43,7 +43,7 @@ export const getCoinsList = async ({ page, perPage }: GetCoinsListArgs) => {
     return {
       ok: false,
       errorMessage,
-      data: null,
+      data: [],
     }
   }
 }

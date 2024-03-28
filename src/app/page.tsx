@@ -1,5 +1,5 @@
 import { Space, Text } from '#/atoms'
-import { CoinsList } from '#/components/CoinsList'
+import { CoinsList } from '#/components/coins-list'
 import { getCoinsListMock } from '#/mocks/getCoinsListMock'
 import { validateSearchParams } from './helpers'
 import { ServerSearchParams } from '#/types'
