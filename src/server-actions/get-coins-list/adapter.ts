@@ -12,7 +12,6 @@ type CoinInfo = {
 type GetCoinsListResponseData = CoinInfo[]
 
 export const getCoinsListAdapter = (responseData: GetCoinsListResponseData) => {
-  // we keep only the properties that we are interested in
   return responseData.map((coinInfo) => {
     return {
       id: coinInfo.id,

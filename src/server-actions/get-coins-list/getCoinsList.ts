@@ -1,8 +1,8 @@
 'use server'
 
 import { coinGeckoApiBaseUrl } from '#/config'
+import { getCoinsListSchema } from '#/schemas/schema'
 import { getCoinsListAdapter } from './adapter'
-import { getCoinsListSchema } from './schema'
 
 type GetCoinsListArgs = {
   page: number
