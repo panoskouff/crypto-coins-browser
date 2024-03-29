@@ -42,7 +42,7 @@ export const CoinsList: React.FC<CoinsListProps> = ({
         <GridItemHeader>24h Low</GridItemHeader>
         <GridItemHeader>24h Change</GridItemHeader>
         {coins.map((coin) => (
-          <GridRowLink href={`/coin/${coin.name}`} key={coin.id}>
+          <GridRowLink href={`/coins/${coin.id}`} key={coin.id}>
             <GridItem color='#343434'>
               {coin.name}{' '}
               <Text fontWeight='bold' color='inherit'>

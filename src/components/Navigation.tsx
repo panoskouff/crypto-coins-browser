@@ -5,7 +5,9 @@ export const Navigation: React.FC = () => {
   return (
     <Padding p={20}>
       <Row justifyContent='space-between'>
-        <TextLink href='/'>Home</TextLink>
+        <TextLink href='/' variant>
+          Home
+        </TextLink>
       </Row>
     </Padding>
   )

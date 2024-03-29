@@ -1,18 +1,13 @@
-/* @todo
-  - avoid css function
-  - generic multiple variant approach
- */
 import { css } from '../styled-system/css'
 import Link, { LinkProps } from 'next/link'
 import { cn } from '#/utils'
 
-// @todo add this to test styles definitions ?
 const textLink = css({
   display: 'inline-block',
   fontSize: '18px',
   fontWeight: 700,
   fontFamily: 'mulish',
-  color: 'text-color-secondary',
+  color: '#3e3eff',
   boxShadow: 'inset 0 -1px 0 0 var(--colors-text-color-tertiary)',
   transition: 'all 200ms ease',
   '&:hover': {
@@ -22,11 +17,7 @@ const textLink = css({
 })
 
 const textLinkVariant = css({
-  boxShadow: 'none',
-  '&:hover': {
-    boxShadow: 'none',
-    transform: 'none',
-  },
+  color: '#fff',
 })
 
 export type TextLinkProps = LinkProps & {
@@ -40,6 +31,7 @@ export const TextLink = ({
   href,
   openInNewTab = false,
   variant = false,
+  color,
   ...rest
 }: TextLinkProps) => (
   <Link

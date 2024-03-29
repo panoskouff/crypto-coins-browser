@@ -11,19 +11,23 @@ type CoinsListContainerProps = {
   coinsListResponse: CoinsListResponse
   currentPage: number
   currentPerPage: number
+  baseUrl: string
+  defaultErrorMessage: string
 }
 
-const getUrlForPage = (page: number, perPage: number) => {
+const getUrlForPage = (baseUrl: string, page: number, perPage: number) => {
   const searchParams = new URLSearchParams()
   searchParams.set('page', page.toString())
   searchParams.set('perPage', perPage.toString())
-  return `/?${searchParams.toString()}`
+  return `${baseUrl}/?${searchParams.toString()}`
 }
 
 export const CoinsListContainer: React.FC<CoinsListContainerProps> = ({
   coinsListResponse,
   currentPage,
   currentPerPage,
+  baseUrl,
+  defaultErrorMessage,
 }) => {
   const router = useRouter()
 
@@ -32,18 +36,18 @@ export const CoinsListContainer: React.FC<CoinsListContainerProps> = ({
 
   useEffect(() => {
     if (currentPage > 1) {
-      router.prefetch(getUrlForPage(previousPage, currentPerPage))
+      router.prefetch(getUrlForPage(baseUrl, previousPage, currentPerPage))
     }
 
-    router.prefetch(getUrlForPage(nextPage, currentPerPage))
-  }, [currentPage, currentPerPage, nextPage, previousPage, router])
+    router.prefetch(getUrlForPage(baseUrl, nextPage, currentPerPage))
+  }, [baseUrl, currentPage, currentPerPage, nextPage, previousPage, router])
 
   const moveTo = useCallback(
     (page: number) => {
-      const newPageUrl = getUrlForPage(page, currentPerPage)
+      const newPageUrl = getUrlForPage(baseUrl, page, currentPerPage)
       router.push(newPageUrl)
     },
-    [currentPerPage, router],
+    [baseUrl, currentPerPage, router],
   )
 
   if (!coinsListResponse.ok) {
@@ -52,7 +56,7 @@ export const CoinsListContainer: React.FC<CoinsListContainerProps> = ({
         {coinsListResponse.errorMessage ? (
           <Text color='red'>{coinsListResponse.errorMessage}</Text>
         ) : (
-          <Text color='red'>Something went wrong : (</Text>
+          <Text color='red'>{defaultErrorMessage}</Text>
         )}
       </Center>
     )

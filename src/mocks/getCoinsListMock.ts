@@ -14,7 +14,6 @@ const getFakeResponse = (page: number, perPage: number) => {
     low24h: 1000 + startIndex + i,
     priceChangePercentage24h:
       i % 2 === 0 ? 1000 + startIndex + i : -(1000 + startIndex + i),
-    // lastUpdated: '2021-10-10',
   }))
 }
 
