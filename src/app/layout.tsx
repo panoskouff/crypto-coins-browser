@@ -24,7 +24,7 @@ export default async function RootLayout({
           </SectionContainer>
         </Container>
         <Space h={30} />
-        <SectionContainer>{children}</SectionContainer>
+        {children}
       </body>
     </html>
   )

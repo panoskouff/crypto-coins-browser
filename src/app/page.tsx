@@ -5,6 +5,7 @@ import { validateSearchParams } from './helpers'
 import { ServerSearchParams } from '#/types'
 import { redirect } from 'next/navigation'
 import { getCoinsList } from '#/server-actions'
+import { SectionContainer } from '#/components/SectionContainer'
 
 type PageParams = {
   searchParams: ServerSearchParams
@@ -29,7 +30,7 @@ export default async function Home({ searchParams }: PageParams) {
   // console.log(coinsList.data)
 
   return (
-    <div>
+    <SectionContainer overflow='auto'>
       <Text textStyle='title'>Coin List</Text>
       <Space h={10} />
       <CoinsList
@@ -37,6 +38,6 @@ export default async function Home({ searchParams }: PageParams) {
         currentPage={validatedParams.page}
         currentPerPage={validatedParams.perPage}
       />
-    </div>
+    </SectionContainer>
   )
 }
