@@ -19,6 +19,7 @@ export type ContainerProps = PandaDivProps<
   | 'borderBottom'
   | 'borderLeft'
   | 'boxShadow'
+  | 'bg'
 >;
 
 export const Container: React.FC<ContainerProps> = ({ children, ...rest }) => (

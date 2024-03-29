@@ -46,7 +46,7 @@ export const textStyles = defineTextStyles({
     value: {
       ...styles.base.value,
       lineHeight: '120%',
-      fontSize: { base: '36px', sm: '50px', md: '5.5vh' },
+      fontSize: { base: '24px', sm: '36px' },
     },
   },
   caption: {

@@ -2,7 +2,7 @@ import React from 'react'
 import { getCoinsList } from '#/server-actions'
 import { Button, Column, Text, Row, Center } from '#/atoms'
 import { Grid, GridItem, GridItemHeader, GridRowLink } from './GridStyles'
-import { formatValue } from './helpers'
+import { formatValue } from '#/utils'
 
 type CoinsInfo = Awaited<ReturnType<typeof getCoinsList>>['data']
 

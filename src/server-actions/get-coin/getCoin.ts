@@ -1,9 +1,9 @@
 'use server'
 
 import { coinGeckoApiBaseUrl } from '#/config'
+import { getCoinSchema } from '#/schemas'
 import { getCoinAdapter } from './adapter'
 import { sanitizeArgs } from './helpers'
-import { getCoinSchema } from './schema'
 
 type GetCoinArgs = {
   coinId: string
@@ -27,6 +27,10 @@ export const getCoin = async (args: GetCoinArgs) => {
 
     const response = await fetch(url)
     const data = await response.json()
+
+    if (data.error) {
+      throw new Error(data.error)
+    }
 
     const adaptedData = getCoinAdapter(data)
 

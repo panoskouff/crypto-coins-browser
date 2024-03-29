@@ -1,4 +1,4 @@
-import { getCoinsListSchema } from '#/schemas/schema'
+import { getCoinsListSchema } from '#/schemas'
 import { ServerSearchParams } from '#/types'
 import { escape } from 'validator'
 
