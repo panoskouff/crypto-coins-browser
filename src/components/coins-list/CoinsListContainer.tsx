@@ -1,8 +1,8 @@
 'use client'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { getCoinsList } from '#/server-actions'
 import { useRouter } from 'next/navigation'
-import { Button, Column, Text, Row, Center } from '#/atoms'
+import { Text, Center } from '#/atoms'
 import { CoinsList } from './CoinsList'
 
 type CoinsListResponse = Awaited<ReturnType<typeof getCoinsList>>
