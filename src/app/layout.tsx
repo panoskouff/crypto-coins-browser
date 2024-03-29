@@ -6,9 +6,10 @@ import { Container } from '#/styled-system/jsx'
 import { Space } from '#/atoms'
 
 export const metadata = {
-  title: 'Todo App title',
-  description: 'todo app description',
+  title: 'Crypto Coins Browser',
 }
+
+export const revalidate = 3600
 
 export default async function RootLayout({
   children,

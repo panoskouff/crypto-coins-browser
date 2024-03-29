@@ -10,7 +10,7 @@ type PageParams = {
   searchParams: ServerSearchParams
 }
 
-const routeUrl = '/coins/markets'
+const thisRouteUrl = '/coins/markets'
 
 export default async function Home({ searchParams }: PageParams) {
   const { paramsAreValid: searchParamsAreValid, validatedParams } =
@@ -21,7 +21,7 @@ export default async function Home({ searchParams }: PageParams) {
 
   if (!searchParamsAreValid) {
     redirect(
-      `${routeUrl}/?page=${validatedParams.page}&perPage=${validatedParams.perPage}`,
+      `${thisRouteUrl}/?page=${validatedParams.page}&perPage=${validatedParams.perPage}`,
     )
   }
 
@@ -35,7 +35,7 @@ export default async function Home({ searchParams }: PageParams) {
         coinsListResponse={coinsList}
         currentPage={validatedParams.page}
         currentPerPage={validatedParams.perPage}
-        baseUrl={routeUrl}
+        baseUrl={thisRouteUrl}
         defaultErrorMessage='Something went wrong : ('
       />
     </SectionContainer>

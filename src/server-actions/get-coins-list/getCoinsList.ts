@@ -26,8 +26,8 @@ export const getCoinsList = async ({ page, perPage }: GetCoinsListArgs) => {
     const response = await fetch(url)
     const data = await response.json()
 
-    if (data.error) {
-      throw new Error(data.error)
+    if (data.status?.error_message) {
+      throw new Error(data.status.error_message)
     }
 
     const adaptedData = getCoinsListAdapter(data)

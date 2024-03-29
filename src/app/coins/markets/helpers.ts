@@ -13,8 +13,7 @@ type Args = {
 const partialSchema = getCoinsListSchema.partial()
 
 export const validateSearchParams = ({ searchParams, defaultValue }: Args) => {
-  let paramsAreValid = true
-
+  let pageParamIsValid = false
   let initialPage = defaultValue.page
   try {
     const { page: pageStr } = searchParams
@@ -25,11 +24,13 @@ export const validateSearchParams = ({ searchParams, defaultValue }: Args) => {
 
     if (validationResult.success) {
       initialPage = page
+      pageParamIsValid = true
     }
   } catch (error) {
-    paramsAreValid = false
+    // noop
   }
 
+  let perPageParamIsValid = false
   let initialPerPage = defaultValue.perPage
   try {
     const { perPage: perPageStr } = searchParams
@@ -40,13 +41,14 @@ export const validateSearchParams = ({ searchParams, defaultValue }: Args) => {
 
     if (validationResult.success) {
       initialPerPage = perPage
+      perPageParamIsValid = true
     }
   } catch {
-    paramsAreValid = false
+    // noop
   }
 
   return {
-    paramsAreValid,
+    paramsAreValid: pageParamIsValid && perPageParamIsValid,
     validatedParams: {
       page: initialPage,
       perPage: initialPerPage,

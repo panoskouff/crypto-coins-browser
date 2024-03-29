@@ -5,22 +5,24 @@ type CoinInfo = {
   id: string
   symbol: string
   name: string
-  description: string
-  priceChange24h: number
-  priceChange7d: number
-  priceChange14d: number
-  priceChange30d: number
-  priceChange200d: number
-  priceChange1y: number
+  description?: string
+  priceChange24h?: number
+  priceChange7d?: number
+  priceChange14d?: number
+  priceChange30d?: number
+  priceChange200d?: number
+  priceChange1y?: number
 }
 
 export const CoinDetails: React.FC<{ coinInfo: CoinInfo }> = ({ coinInfo }) => {
   return (
     <Column gap='20px'>
       <Text textStyle='title'>{coinInfo.name}</Text>
-      <Padding p='20px'>
-        <Text dangerouslySetInnerHTML={{ __html: coinInfo.description }} />
-      </Padding>
+      {coinInfo.description && (
+        <Padding p='20px'>
+          <Text dangerouslySetInnerHTML={{ __html: coinInfo.description }} />
+        </Padding>
+      )}
       <Text textStyle='title-secondary'>Price changes:</Text>
       <Container bg='#f5f5f5' borderRadius='4px'>
         <Padding p='20px'>
