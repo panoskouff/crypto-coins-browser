@@ -6,7 +6,6 @@ type CoinInfo = {
   high_24h: number
   low_24h: number
   price_change_percentage_24h: number
-  last_updated: string
 }
 
 type GetCoinsListResponseData = CoinInfo[]
@@ -21,7 +20,6 @@ export const getCoinsListAdapter = (responseData: GetCoinsListResponseData) => {
       high24h: coinInfo.high_24h,
       low24h: coinInfo.low_24h,
       priceChangePercentage24h: coinInfo.price_change_percentage_24h,
-      lastUpdated: coinInfo.last_updated,
     }
   })
 }

@@ -4,6 +4,7 @@ import { getCoinsListMock } from '#/mocks/getCoinsListMock'
 import { validateSearchParams } from './helpers'
 import { ServerSearchParams } from '#/types'
 import { redirect } from 'next/navigation'
+import { getCoinsList } from '#/server-actions'
 
 type PageParams = {
   searchParams: ServerSearchParams
@@ -22,8 +23,10 @@ export default async function Home({ searchParams }: PageParams) {
     )
   }
 
-  // const coinsList = await getCoinsList(coinsListConfig)
+  // const coinsList = await getCoinsList(validatedParams)
   const coinsList = await getCoinsListMock(validatedParams)
+
+  // console.log(coinsList.data)
 
   return (
     <div>

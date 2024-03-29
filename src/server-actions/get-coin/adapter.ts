@@ -35,11 +35,11 @@ export const getCoinAdapter = (responseData: GetCoinResponseData) => {
     symbol: symbol,
     name: name,
     description: description.en,
-    price_change_24h: market_data.price_change_24h_in_currency.usd,
-    price_change_7d: market_data.price_change_percentage_7d_in_currency.usd,
-    price_change_14d: market_data.price_change_percentage_14d_in_currency.usd,
-    price_change_30d: market_data.price_change_percentage_30d_in_currency.usd,
-    price_change_200d: market_data.price_change_percentage_200d_in_currency.usd,
-    price_change_1y: market_data.price_change_percentage_1y_in_currency.usd,
+    priceChange24h: market_data.price_change_24h_in_currency.usd,
+    priceChange7d: market_data.price_change_percentage_7d_in_currency.usd,
+    priceChange14d: market_data.price_change_percentage_14d_in_currency.usd,
+    priceChange30d: market_data.price_change_percentage_30d_in_currency.usd,
+    priceChange200d: market_data.price_change_percentage_200d_in_currency.usd,
+    priceChange1y: market_data.price_change_percentage_1y_in_currency.usd,
   }
 }

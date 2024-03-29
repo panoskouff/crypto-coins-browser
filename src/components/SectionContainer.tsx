@@ -20,7 +20,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
   ...rest
 }) => (
   <Flex justifyContent={justifyContent} {...rest}>
-    <styled.div flexGrow={1} maxW={maxW} mx={mx}>
+    <styled.div flexGrow={1} maxW={maxW} mx={mx} overflow='auto'>
       {children}
     </styled.div>
   </Flex>

@@ -1,7 +1,6 @@
 import { styled } from '#/styled-system/jsx'
 import type { PandaDivProps } from '#/types'
 
-// @todo change approach to exclude props instead ?
 /* prettier-ignore */
 export type ContainerProps = PandaDivProps<
   | 'w'
@@ -15,6 +14,10 @@ export type ContainerProps = PandaDivProps<
   | 'borderRadius'
   | 'rounded'
   | 'border'
+  | 'borderTop'
+  | 'borderRight'
+  | 'borderBottom'
+  | 'borderLeft'
   | 'boxShadow'
 >;
 

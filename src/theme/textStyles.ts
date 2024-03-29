@@ -29,8 +29,8 @@ export const textStyles = defineTextStyles({
     description: 'The body text style',
     value: {
       ...styles.base.value,
-      fontSize: '18px',
-      lineHeight: '32px',
+      fontSize: '16px',
+      lineHeight: '24px',
     },
   },
   title: {
@@ -38,7 +38,7 @@ export const textStyles = defineTextStyles({
     value: {
       ...styles.base.value,
       lineHeight: '120%',
-      fontSize: { base: '36px', sm: '54px', lg: '60px' },
+      fontSize: { base: '36px', sm: '56px' },
     },
   },
   'title-secondary': {

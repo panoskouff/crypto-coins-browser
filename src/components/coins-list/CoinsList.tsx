@@ -1,6 +1,8 @@
 import React from 'react'
-import { Button, Column, Text, Row, Center } from '#/atoms'
 import { getCoinsList } from '#/server-actions'
+import { Button, Column, Text, Row, Center } from '#/atoms'
+import { Grid, GridItem, GridItemHeader, GridRowLink } from './GridStyles'
+import { formatValue } from './helpers'
 
 type CoinsInfo = Awaited<ReturnType<typeof getCoinsList>>['data']
 
@@ -32,14 +34,32 @@ export const CoinsList: React.FC<CoinsListProps> = ({
   }
 
   return (
-    <Column>
-      {coins.map((coin) => (
-        <Row key={coin.id} justifyContent='space-between'>
-          <Text>
-            {coin.name} ({coin.symbol}): ${coin.currentPrice}
-          </Text>
-        </Row>
-      ))}
+    <Column gap='20px'>
+      <Grid>
+        <GridItemHeader>Coin</GridItemHeader>
+        <GridItemHeader>Current Price</GridItemHeader>
+        <GridItemHeader>24h High</GridItemHeader>
+        <GridItemHeader>24h Low</GridItemHeader>
+        <GridItemHeader>24h Change</GridItemHeader>
+        {coins.map((coin) => (
+          <GridRowLink href={`/coin/${coin.name}`} key={coin.id}>
+            <GridItem color='#343434'>
+              {coin.name}{' '}
+              <Text fontWeight='bold' color='inherit'>
+                ({coin.symbol})
+              </Text>
+            </GridItem>
+            <GridItem>{formatValue('$', coin.currentPrice)}</GridItem>
+            <GridItem>{formatValue('$', coin.high24h)}</GridItem>
+            <GridItem>{formatValue('$', coin.low24h)}</GridItem>
+            <GridItem
+              color={coin.priceChangePercentage24h >= 0 ? 'green' : 'red'}
+            >
+              {formatValue('%', coin.priceChangePercentage24h)}
+            </GridItem>
+          </GridRowLink>
+        ))}
+      </Grid>
       <Row justifyContent='space-between'>
         <Button
           onClick={() => moveTo(previousPage)}
