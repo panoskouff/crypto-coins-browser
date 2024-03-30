@@ -23,7 +23,7 @@ export const CoinDetails: React.FC<{ coinInfo: CoinInfo }> = ({ coinInfo }) => {
           <Text dangerouslySetInnerHTML={{ __html: coinInfo.description }} />
         </Padding>
       )}
-      <Text textStyle='title-secondary'>Price changes:</Text>
+      <Text textStyle='title-secondary'>Price changes ($):</Text>
       <Container bg='#f5f5f5' borderRadius='4px'>
         <Padding p='20px'>
           <Flex gap='10px' flexDirection={{ base: 'column', md: 'row' }}>
