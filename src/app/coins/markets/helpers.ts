@@ -14,16 +14,18 @@ const partialSchema = getCoinsListSchema.partial()
 
 export const validateSearchParams = ({ searchParams, defaultValue }: Args) => {
   let pageParamIsValid = false
-  let initialPage = defaultValue.page
+  let resolvedPageParam = defaultValue.page
   try {
-    const { page: pageStr } = searchParams
-    const sanitizedPage = escape(pageStr as string)
-    const page = parseInt(sanitizedPage)
+    const { page } = searchParams
+    const sanitizedPage = escape(page as string)
+    const pageFromSearchParams = parseInt(sanitizedPage)
 
-    const validationResult = partialSchema.safeParse({ page })
+    const validationResult = partialSchema.safeParse({
+      page: pageFromSearchParams,
+    })
 
     if (validationResult.success) {
-      initialPage = page
+      resolvedPageParam = pageFromSearchParams
       pageParamIsValid = true
     }
   } catch (error) {
@@ -31,16 +33,18 @@ export const validateSearchParams = ({ searchParams, defaultValue }: Args) => {
   }
 
   let perPageParamIsValid = false
-  let initialPerPage = defaultValue.perPage
+  let resolvedPerPageParam = defaultValue.perPage
   try {
-    const { perPage: perPageStr } = searchParams
-    const sanitizedPerPage = escape(perPageStr as string)
-    const perPage = parseInt(sanitizedPerPage)
+    const { perPage } = searchParams
+    const sanitizedPerPage = escape(perPage as string)
+    const perPageFromSearchParams = parseInt(sanitizedPerPage)
 
-    const validationResult = partialSchema.safeParse({ perPage })
+    const validationResult = partialSchema.safeParse({
+      perPage: perPageFromSearchParams,
+    })
 
     if (validationResult.success) {
-      initialPerPage = perPage
+      resolvedPerPageParam = perPageFromSearchParams
       perPageParamIsValid = true
     }
   } catch {
@@ -50,8 +54,8 @@ export const validateSearchParams = ({ searchParams, defaultValue }: Args) => {
   return {
     paramsAreValid: pageParamIsValid && perPageParamIsValid,
     validatedParams: {
-      page: initialPage,
-      perPage: initialPerPage,
+      page: resolvedPageParam,
+      perPage: resolvedPerPageParam,
     },
   }
 }

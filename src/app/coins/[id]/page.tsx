@@ -8,26 +8,23 @@ type PageParams = {
   params: { id: string }
 }
 
+const CoinIdNotValid = () => (
+  <Center h='50vh'>
+    <Text color='red'>Coin id not valid</Text>
+  </Center>
+)
+
 export default async function CoinDetailsPage({ params }: PageParams) {
   const { paramsAreValid, coinId } = validateParams(params)
 
   if (!paramsAreValid) {
-    return (
-      <Center h='50vh'>
-        <Text color='red'>Coin id not valid</Text>
-      </Center>
-    )
+    return <CoinIdNotValid />
   }
 
   const coinDetails = await getCoin({ coinId })
 
   if (!coinDetails.ok || !coinDetails.data) {
-    console.log(coinDetails.errorMessage)
-    return (
-      <Center h='50vh'>
-        <Text color='red'>Coin id not valid</Text>
-      </Center>
-    )
+    return <CoinIdNotValid />
   }
 
   return (
