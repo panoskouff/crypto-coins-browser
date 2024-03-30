@@ -1,5 +1,5 @@
 import { SectionContainer } from '#/components/SectionContainer'
-import { Column, Padding, Space, Text, TextLink } from '#/atoms'
+import { Column, Padding, Text, TextLink } from '#/atoms'
 
 export default async function Home() {
   return (
