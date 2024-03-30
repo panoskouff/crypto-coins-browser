@@ -1,9 +1,10 @@
 'use client'
 import { useCallback, useEffect } from 'react'
-import { getCoinsList } from '#/server-actions'
 import { useRouter } from 'next/navigation'
+import { getCoinsList } from '#/server-actions'
 import { Text, Center } from '#/atoms'
 import { CoinsList } from './CoinsList'
+import { getUrlForPage } from './helpers'
 
 type CoinsListResponse = Awaited<ReturnType<typeof getCoinsList>>
 
@@ -13,13 +14,6 @@ type CoinsListContainerProps = {
   currentPerPage: number
   baseUrl: string
   defaultErrorMessage: string
-}
-
-const getUrlForPage = (baseUrl: string, page: number, perPage: number) => {
-  const searchParams = new URLSearchParams()
-  searchParams.set('page', page.toString())
-  searchParams.set('perPage', perPage.toString())
-  return `${baseUrl}/?${searchParams.toString()}`
 }
 
 export const CoinsListContainer: React.FC<CoinsListContainerProps> = ({
