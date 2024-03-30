@@ -49,17 +49,6 @@ export const textStyles = defineTextStyles({
       fontSize: { base: '24px', sm: '36px' },
     },
   },
-  caption: {
-    description: 'The caption text style',
-    value: {
-      ...styles.base.value,
-      fontSize: '14px',
-      lineHeight: '110%',
-      fontWeight: 600,
-      letterSpacing: '0.2em',
-      textTransform: 'uppercase',
-    },
-  },
   button: {
     description: 'The button text style',
     value: {
@@ -69,24 +58,6 @@ export const textStyles = defineTextStyles({
       fontWeight: 600,
       letterSpacing: '0.2em',
       textTransform: 'uppercase',
-    },
-  },
-  // forms
-  'form-label': {
-    description: 'The form label text style',
-    value: {
-      ...styles.base.value,
-      fontSize: '16px',
-      lineHeight: '24px',
-    },
-  },
-  'form-text-error': {
-    description: 'The form field error text style',
-    value: {
-      ...styles.base.value,
-      fontSize: '12px',
-      lineHeight: '18px',
-      fontWeight: 600,
     },
   },
 })
