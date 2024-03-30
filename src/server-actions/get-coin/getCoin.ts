@@ -3,7 +3,7 @@
 import { coinGeckoApiBaseUrl } from '#/config'
 import { getCoinSchema } from '#/schemas'
 import { getCoinAdapter } from './adapter'
-import { sanitizeArgs } from './helpers'
+import { escape } from 'validator'
 
 type GetCoinArgs = {
   coinId: string
@@ -15,7 +15,7 @@ export const getCoin = async (args: GetCoinArgs) => {
       throw new Error('Invalid arguments')
     }
 
-    const { coinId } = sanitizeArgs(args)
+    const coinId = escape(args.coinId)
 
     const validationResult = getCoinSchema.safeParse({ coinId })
 

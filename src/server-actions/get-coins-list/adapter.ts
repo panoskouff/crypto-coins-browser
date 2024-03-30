@@ -11,15 +11,13 @@ type CoinInfo = {
 type GetCoinsListResponseData = CoinInfo[]
 
 export const getCoinsListAdapter = (responseData: GetCoinsListResponseData) => {
-  return responseData.map((coinInfo) => {
-    return {
-      id: coinInfo.id,
-      symbol: coinInfo.symbol,
-      name: coinInfo.name,
-      currentPrice: coinInfo.current_price,
-      high24h: coinInfo.high_24h,
-      low24h: coinInfo.low_24h,
-      priceChangePercentage24h: coinInfo.price_change_percentage_24h,
-    }
-  })
+  return responseData.map((coinInfo) => ({
+    id: coinInfo.id,
+    symbol: coinInfo.symbol,
+    name: coinInfo.name,
+    currentPrice: coinInfo.current_price,
+    high24h: coinInfo.high_24h,
+    low24h: coinInfo.low_24h,
+    priceChangePercentage24h: coinInfo.price_change_percentage_24h,
+  }))
 }
